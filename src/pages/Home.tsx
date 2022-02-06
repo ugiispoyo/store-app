@@ -30,6 +30,7 @@ export default function Home() {
                     <Grid item xs={6}><MyCard /></Grid>
                     <Grid item xs={6}><MyCard /></Grid>
                     <Grid item xs={6}><MyCard /></Grid>
+                    <Grid item xs={6}><MyCard /></Grid>
                 </Grid>
                 {/* Modal Product Detail */}
                 <ModalProduct />
