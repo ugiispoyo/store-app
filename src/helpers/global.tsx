@@ -8,8 +8,9 @@ declare let process: {
 export const MyHeader = {
     "Content-Type": "application/xml",
     "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "*",
+    "Access-Control-Allow-Headers": "*",
     "Accept-Charset": "utf-8",
-    'Access-Control-Allow-Methods': "GET,PUT,POST,DELETE,PATCH,OPTIONS",
     "openapikey": process.env.REACT_APP_KEY
 }
 

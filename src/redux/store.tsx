@@ -5,42 +5,27 @@ import rootReducer from './reducers';
 const initialState = {};
 const middleware = [thunk];
 
+const reduxDevTools =
+    (window as any)?.__REDUX_DEVTOOLS_EXTENSION__
+    && (window as any)?.__REDUX_DEVTOOLS_EXTENSION__();
+
+const customCompose =
+    typeof reduxDevTools !== 'undefined' &&
+        process.env.NODE_ENV === 'development' ?
+        /* === With Redux Devtools === */
+        compose(
+            applyMiddleware(...middleware),
+            reduxDevTools
+        )
+        :
+        compose(
+            applyMiddleware(...middleware)
+        )
+
 const store: any = createStore<any, any, any, any>(
     rootReducer,
     initialState,
-    compose(
-        applyMiddleware(...middleware),
-        (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    customCompose
 );
-
-// if(typeof (window as any).__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') {
-//     if(process.env.NODE_ENV === 'development') {
-//         store = createStore<any, any, any, any>(
-//             rootReducer,
-//             initialState,
-//             compose(
-//                 applyMiddleware(...middleware),
-//                 (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-//             )
-//         )
-//     } else {
-//         store = createStore<any, any, any, any>(
-//             rootReducer,
-//             initialState,
-//             compose(
-//                 applyMiddleware(...middleware)
-//             )
-//         )    
-//     }
-// } else {
-//     store = createStore<any, any, any, any>(
-//         rootReducer,
-//         initialState,
-//         compose(
-//             applyMiddleware(...middleware)
-//         )
-//     )    
-// }
 
 export default store;
