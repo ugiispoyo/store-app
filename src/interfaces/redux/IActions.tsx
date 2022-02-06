@@ -1,3 +1,3 @@
 export interface IProduct {
-    page: string
+    page: number
 }

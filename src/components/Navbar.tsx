@@ -5,27 +5,37 @@ import {
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+import Badge, { BadgeProps } from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import useStyles from '../styles/global.styles';
 // import INavbar from '../interfaces/components/INavbar';
 
+const CustomBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+    '& .MuiBadge-badge': {
+        right: 5,
+        top: 0,
+        border: `1px solid ${theme.palette.background.paper}`,
+        padding: '0 4px',
+    },
+}));
+
 const Navbar: React.FC = () => {
     const classes = useStyles();
 
     return (
-        <Box 
-            sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }} 
-            className={classes.navbar}>
-            <Typography sx={{ minWidth: 100 }}>
+        <Box className={classes.navbar}>
+            <Typography>
                 <Link to="/">
                     <HomeIcon /> Home
                 </Link>
             </Typography>
-            <Typography sx={{ minWidth: 100 }}>
+            <Typography>
                 <Link to="/cart">
-                    <span className='count-cart'>1</span>
-                    <ShoppingCartIcon />
+                    <CustomBadge badgeContent={4} color="error">
+                        <ShoppingCartIcon />
+                    </CustomBadge>
                 </Link>
             </Typography>
         </Box>

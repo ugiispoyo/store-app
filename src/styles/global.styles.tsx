@@ -21,13 +21,15 @@ const useStyles = makeStyles({
         fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
         position: 'fixed',
         lineHeight: 1.43,
+        display: 'flex', 
+        alignItems: 'center', 
+        textAlign: 'center',
         boxSizing: 'border-box',
         width: '100%',
         maxWidth: '560px',
         top: 0,
         letterSpacing: '0.01071em',
         backgroundColor: 'rgb(229, 246, 253)',
-        display: 'flex',
         padding: '15px 10px',
         color: 'rgb(1, 67, 97)',
         justifyContent: 'space-between',
@@ -44,22 +46,6 @@ const useStyles = makeStyles({
             justifyContent: 'flex-end',
             position: 'relative'
         },
-        '& .count-cart': {
-            minWidth: '18px',
-            height: '18px',
-            fontSize: '0.60rem',
-            borderRadius: '10px',
-            boxSizing: 'border-box',
-            justifyContent: 'center',
-            background: 'rgb(235, 0, 20)',
-            color: 'rgb(255, 255, 255)',
-            position: 'absolute',
-            padding: '0px 6px',
-            top: '-10px',
-            display: 'flex',
-            alignItems: 'center',
-            right: '0px'
-        }
     }
 });
 

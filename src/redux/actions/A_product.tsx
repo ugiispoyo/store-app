@@ -1,6 +1,6 @@
 import axios from "axios";
 import { MyEndpoint, MyHeader } from "../../helpers/global";
-import { IProduct } from "../../interfaces/redux/IActions";
+// import { IProduct } from "../../interfaces/redux/IActions";
 
 // export const getProduct = ({page}: IProduct) => async (dispatch: any) => {
 export const getProduct = () => async (dispatch: any) => {

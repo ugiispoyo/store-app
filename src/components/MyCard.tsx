@@ -9,8 +9,15 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import useStylesCard from '../styles/card.styles';
 
+import { useCtxProduct } from '../context/product';
+
 const MyCard: React.FC = () => {
-    const classes = useStylesCard()
+
+    const {
+        openModal
+    } = useCtxProduct()
+
+    const classes = useStylesCard();
 
     return (
         <Card className={classes.card}>
@@ -22,14 +29,19 @@ const MyCard: React.FC = () => {
             />
             <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
-                    Lizard
+                    Lorem ipsum dolor ismet
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000..
+                    Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" startIcon={<InfoOutlinedIcon />}> Detail </Button>
+                <Button 
+                    size="small" 
+                    startIcon={<InfoOutlinedIcon />} 
+                    onClick={() => openModal(true)}> 
+                        Detail 
+                </Button>
             </CardActions>
         </Card>
     );
