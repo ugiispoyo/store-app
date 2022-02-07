@@ -9,6 +9,7 @@
     <li>5. Kemudian buat file dengan nama ".env" tanpa tanda kutip dan isi file tersebut dengan copian isi dari file ".env.example"</li>
     <li>6. Lalu kemudian ketik "npm start" untuk menjalankan aplikasinya</li>
 </ul>
+<hr/>
 <h3>Cara menjalankan server</h3>
 <ul>
     <li>1. Clone atau download Repository ini </li>
