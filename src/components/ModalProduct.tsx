@@ -70,9 +70,7 @@ const ModalProduct: React.FC = () => {
     const handleClose = () => {
         openModal(!modal)
     }
-
-    console.log(detailProduct)
-
+    
     return (
         <BootstrapDialog
             onClose={handleClose}
