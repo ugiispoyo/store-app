@@ -1,3 +1,1 @@
-export interface IProduct {
-    page: number
-}
+export interface IProduct {}

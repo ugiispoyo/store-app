@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CardMedia from '@mui/material/CardMedia';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -11,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { useCtxProduct } from '../context/product';
 import { DialogTitleProps } from '../interfaces/components/IModalProduct';
+import { IStateProduct } from '../interfaces/redux/IReducer';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -46,7 +50,17 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     );
 };
 
+const useStyles = makeStyles({
+    button: {
+        marginLeft: '15px !important'
+    }
+});
+
 const ModalProduct: React.FC = () => {
+    const detailProduct = useSelector((state: IStateProduct) => state.product.detail_product)
+    const loading = useSelector((state: IStateProduct) => state.product.loading)
+
+    const classes = useStyles();
 
     const {
         modal,
@@ -57,6 +71,8 @@ const ModalProduct: React.FC = () => {
         openModal(!modal)
     }
 
+    console.log(detailProduct)
+
     return (
         <BootstrapDialog
             onClose={handleClose}
@@ -66,24 +82,42 @@ const ModalProduct: React.FC = () => {
             <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
                 Detail Produk
             </BootstrapDialogTitle>
-            <DialogContent dividers>
-                <Typography gutterBottom>
-                    Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet
-                    Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet
-                    Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet
-                    Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet
-                    Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet
-                    Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet Lorem ipsum dolor ismet
-                </Typography>
-            </DialogContent>
-            <DialogActions>
-                <Button autoFocus onClick={handleClose} startIcon={<ShoppingCartIcon />}>
-                    Tambah Ke Keranjang
-                </Button>
-            </DialogActions>
-        </BootstrapDialog>
+            {
+                loading?.detailProduct ?
+                    <span>Loading...</span>
+                    :
+                    <>
+                        <DialogContent dividers>
+                            {
+                                detailProduct?.prdImage01 &&
+                                <CardMedia
+                                    component="img"
+                                    alt={detailProduct?.prdNm}
+                                    height="140"
+                                    image={detailProduct?.prdImage01}
+                                />
+                                // <img src={detailProduct?.prdImage01} alt={detailProduct?.prdN} />
+                            }
+                            <Typography gutterBottom variant="h4">
+                                {detailProduct?.prdNm}
+                            </Typography>
+                            <Typography gutterBottom>
+                                <div dangerouslySetInnerHTML={{__html: detailProduct?.htmlDetail}} />
+                            </Typography>
+                        </DialogContent>
+                        <DialogActions>
+                            <Typography gutterBottom>
+                                Rp. {detailProduct?.selPrc}
+                            </Typography>
+                            <Button autoFocus onClick={handleClose} startIcon={<ShoppingCartIcon />} className={classes.button}>
+                                Tambah Ke Keranjang
+                            </Button>
+                        </DialogActions>
+                    </>
+            }
+        </BootstrapDialog >
     );
 };
 
 
-export default ModalProduct;
+export default React.memo(ModalProduct);

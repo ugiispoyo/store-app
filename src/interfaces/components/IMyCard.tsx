@@ -1,3 +1,4 @@
-export default interface IList {
-    
+export default interface IMyCard {
+    prdNo: string;
+    prdNm: string;
 }

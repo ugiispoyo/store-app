@@ -2,8 +2,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-const initialState = {};
-const middleware = [thunk];
+const initialState: any = {};
+const middleware: any = [thunk];
 
 const reduxDevTools =
     (window as any)?.__REDUX_DEVTOOLS_EXTENSION__
